@@ -33,21 +33,27 @@ fun main() {
                 val authorization = call.request.headers["authorization"]
 
                 if (authorization == null) {
-                    call.respond(HttpStatusCode.BadRequest, error("missing `authorization` header"))
+                    call.respond(HttpStatusCode.Unauthorized, error("missing `authorization` header"))
                     return@patch
                 }
 
-                call.respond(
-                    processHomeAway(
-                        user = user,
-                        structureId = structureId,
-                        structure = structure,
-                        authorization = authorization
-                    )
+                val result = processHomeAway(
+                    user = user,
+                    structureId = structureId,
+                    structure = structure,
+                    authorization = authorization
                 )
+
+                val status = if (result.status == ResultStatus.SUCCESS) {
+                    HttpStatusCode.OK
+                } else {
+                    HttpStatusCode.BadRequest
+                }
+
+                call.respond(status = status, message = result)
             }
         }
     }.start(wait = true)
 }
 
-fun error(message: String) = Error(error = ErrorMessage(message = message))
+fun error(message: String) = ApiResult(status = ResultStatus.FAILURE, message = message)

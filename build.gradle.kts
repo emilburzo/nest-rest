@@ -35,9 +35,9 @@ tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-tasks.withType<JavaCompile>() {
-    options.release.set(8)
-}
+//tasks.withType<JavaCompile>() {
+//    options.release.set(8)
+//}
 
 tasks {
     named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {

@@ -1,7 +1,12 @@
-data class Success(val status: String = "OK")
-data class Error(val error: ErrorMessage)
-data class ErrorMessage(val message: String)
+// generic
+data class ApiResult(
+    val status: ResultStatus,
+    val message: String? = null
+)
 
+enum class ResultStatus { SUCCESS, FAILURE }
+
+// structure
 data class Structure(
     val mode: StructureMode
 )
