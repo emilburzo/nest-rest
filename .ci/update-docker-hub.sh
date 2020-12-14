@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 . .ci/constants.sh
 
 ./gradlew build
