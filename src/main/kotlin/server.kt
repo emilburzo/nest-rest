@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.application.*
 import io.ktor.features.*
@@ -18,6 +19,7 @@ fun main() {
         install(ContentNegotiation) {
             jackson {
                 enable(SerializationFeature.INDENT_OUTPUT)
+                enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
             }
         }
         install(CallLogging) {
