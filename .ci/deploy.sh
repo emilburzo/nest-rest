@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./constants.sh
+. .ci/constants.sh
 
 docker pull ${IMAGE}
 docker stop ${NAME}

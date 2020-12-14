@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./constants.sh
+. .ci/constants.sh
 
 ./gradlew build
 
