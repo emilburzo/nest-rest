@@ -1,4 +1,4 @@
-FROM openjdk:14-jre-alpine
+FROM openjdk:11-jre-alpine
 
 ENV APPLICATION_USER ktor
 RUN adduser -D -g '' $APPLICATION_USER
