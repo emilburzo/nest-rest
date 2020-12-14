@@ -1,8 +1,6 @@
 #!/bin/bash
 
-NAME="nest-rest"
-IMAGE="emilburzo/nest-rest:latest"
-PORT="8467"
+. ./constants.sh
 
 docker pull ${IMAGE}
 docker stop ${NAME}

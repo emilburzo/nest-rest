@@ -1,6 +1,8 @@
 #!/bin/bash
 
+. ./constants.sh
+
 ./gradlew build
 
-docker build -t emilburzo/nest-rest .
-docker push emilburzo/nest-rest
+docker build -t ${IMAGE} .
+docker push ${IMAGE}
