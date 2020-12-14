@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.http.*
 import io.ktor.jackson.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -23,11 +24,17 @@ fun main() {
             level = Level.INFO
         }
         routing {
-            post("/users/{user}/structures/{structure}") {
+            patch("/users/{user}/structures/{structure}") {
                 val user = call.parameters.getOrFail("user")
                 val structureId = call.parameters.getOrFail("structure")
                 val structure = call.receive<Structure>()
                 val authorization = call.request.headers["authorization"]
+
+                if (authorization == null) {
+                    call.respond(HttpStatusCode.BadRequest, error("missing `authorization` header"))
+                    return@patch
+                }
+
                 call.respond(
                     processHomeAway(
                         user = user,
@@ -41,4 +48,4 @@ fun main() {
     }.start(wait = true)
 }
 
-
+fun error(message: String) = Error(error = ErrorMessage(message = message))
