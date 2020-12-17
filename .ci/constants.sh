@@ -1,3 +1,3 @@
 export NAME="nest-rest"
-export IMAGE="emilburzo/nest-rest:latest"
+export IMAGE="emilburzo/${NAME}:latest"
 export PORT="8467"
