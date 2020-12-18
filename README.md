@@ -63,3 +63,7 @@ And you'll get back a helpful error message which contains the structure id, e.g
   "message": "User does not have permission to Set(STRUCTURE_thistotallydoesnotexist).  Allowed resources are Set(USER_XXXXXXXXXXXXXXXX, STRUCTURE_XXXXXXXXXXXXXXXX, DEVICE_XXXXXXXXXXXXXXXX)"
 }
 ```
+
+# Credits
+
+- https://github.com/derek-miller/nest-protobuf for the hard job of extracting the `.proto` files
