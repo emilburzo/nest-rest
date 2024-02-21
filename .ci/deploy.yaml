@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nest-rest
+  labels:
+    app: nest-rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nest-rest
+  template:
+    metadata:
+      labels:
+        app: nest-rest
+    spec:
+      containers:
+        - name: nest-rest
+          image: emilburzo/nest-rest:SHORT_SHA
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nest-rest
+  labels:
+    run: nest-rest
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    app: nest-rest
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nest-rest
+spec:
+  rules:
+    - host: nest-rest.emilburzo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nest-rest
+                port:
+                  number: 8080

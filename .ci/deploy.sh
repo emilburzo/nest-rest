@@ -1,8 +1,5 @@
 #!/bin/bash
 
-. .ci/constants.sh
-
-docker pull ${IMAGE}
-docker stop ${NAME}
-docker rm ${NAME}
-docker run -d --restart=always --name ${NAME} -p ${PORT}:8080 ${IMAGE}
+SHORT_SHA="$(git rev-parse --short HEAD)"
+echo "SHORT_SHA=${SHORT_SHA}"
+cat .ci/deploy.yaml | sed "s/SHORT_SHA/${SHORT_SHA}/g" | kubectl apply -f -
