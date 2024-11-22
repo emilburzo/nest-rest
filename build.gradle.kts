@@ -24,7 +24,6 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:1.4.0")
     implementation("com.google.protobuf:protobuf-java:3.11.0")
     implementation("ch.qos.logback:logback-classic:1.2.3")
-    api("com.github.jengelman.gradle.plugins:shadow:6.1.0")
 }
 
 tasks.test {
