@@ -32,20 +32,3 @@ spec:
       protocol: TCP
   selector:
     app: nest-rest
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nest-rest
-spec:
-  rules:
-    - host: nest-rest.emilburzo.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: nest-rest
-                port:
-                  number: 8080
